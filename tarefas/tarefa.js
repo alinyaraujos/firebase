@@ -1,5 +1,6 @@
-  // Initialize Firebase
-  var config = {
+
+
+ var config = {
     apiKey: "AIzaSyDhwtJ_nZ6CuUw640uUtJE-it37fGY7g6U",
     authDomain: "minicurso-14d77.firebaseapp.com",
     databaseURL: "https://minicurso-14d77.firebaseio.com",
@@ -9,15 +10,15 @@
   };
   var app = firebase.initializeApp(config);
 
+   
 
   function addTarefa(){
-    var nomeTarefa=document.getElementById("nomeDaTarefa").value;
-    var prioridade=document.getElementById("prioridade").value;
+    var nomeTarefa = document.getElementById("nomeDaTarefa").value;
+    var prioridade = document.getElementById("prioridade").value;
 
     app.database().ref("tarefas").push({
       "nome_tarefa": nomeTarefa,
-      "prioridade": prioridade, 
-      "status": "false"
+      "prioridade": prioridade
     });
   }
 
@@ -30,9 +31,17 @@
 
       var elemento='';
         for(key in tarefa){
-        elemento = elemento + "Nome: " + tarefa[key]["nome_tarefa"] + "<br> Prioridade:" + tarefa[key]["prioridade"]+"<hr>";
+        elemento = elemento + "Nome: " + tarefa[key]["nome_tarefa"] + "<br> Prioridade:" + tarefa[key]["prioridade"] + "<button class='excluir' id='buttonExcluir' value='"+key+"'> Excluir </button><br>" +"<hr>";
       }
-      this.elementroTarefas.innerHTML=elemento;
+      this.elementroTarefas.innerHTML=this.elementroTarefas.innerHTML+elemento;
+
+      var elementos=document.getElementsByClassName("excluir");
+
+      for(elemento of elementos){
+        elemento.addEventListener("click",()=>{
+          app.database().ref('/tarefas').child(elemento.value).remove();
+        });
+      }
     });
   });
 
@@ -41,3 +50,6 @@
     this.elementroTarefas= document.getElementById("tarefas");
     tarefas();
   });
+
+   
+
