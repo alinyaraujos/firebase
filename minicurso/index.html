@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Tarefas</title>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<label><b>Nome Tarefa:</b></label>
+	    <input type="text" id="nomeDaTarefa" name="nomeDaTarefa" required><br>
+
+	    <label><b>Prioridade:</b></label>
+	    <input type="text" id="prioridade" name="prioridade">  <br>
+
+		<button onclick="addTarefa()"> Add Tarefa </button>
+    	
+    </div>
+
+    <h2>Lista de Tarefas</h2>
+    <div id="tarefas">
+
+    </div> 
+</body>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<link href="style.css" rel="stylesheet">
+<script src="tarefa.js"></script>
